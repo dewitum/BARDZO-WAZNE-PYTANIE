@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaproszenie na Walentynki</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #invitation {
+            text-align: center;
+            color: red;
+            font-size: 24px;
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        #yes-button {
+            background-color: green;
+            color: white;
+            border: none;
+        }
+
+        #no-button {
+            background-color: red;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 48px;
+            color: red;
+            display: none;
+        }
+
+        #result-yay {
+            font-size: 48px;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="invitation">
+        Czy zostaniesz moją walentynką?
+    </div>
+
+    <div id="buttons">
+        <button id="yes-button" class="button" onclick="onYesClick()">Tak</button>
+        <button id="no-button" class="button" onclick="onNoClick()">Nie</button>
+    </div>
+
+    <div id="result"></div>
+    <div id="result-yay"></div>
+
+    <script>
+        let noButtonClickCount = 0;
+
+        function onYesClick() {
+            document.getElementById('invitation').style.display = 'none';
+            document.getElementById('buttons').style.display = 'none';
+            document.getElementById('result-yay').innerText = 'YAY';
+            document.getElementById('result-yay').style.display = 'block';
+        }
+
+        function onNoClick() {
+            noButtonClickCount++;
+
+            if (noButtonClickCount === 1) {
+                document.getElementById('invitation').innerText = 'Napewno?';
+            } else {
+                document.getElementById('invitation').innerText += '?';
+            }
+
+            if (noButtonClickCount < 5) {
+                document.getElementById('yes-button').style.width = (150 + noButtonClickCount * 20) + 'px';
+                document.getElementById('yes-button').style.height = (50 + noButtonClickCount * 10) + 'px';
+                document.getElementById('no-button').style.width = '150px';
+            } else {
+                document.getElementById('invitation').style.display = 'none';
+                document.getElementById('buttons').style.display = 'none';
+                document.getElementById('result').innerText = ':((';
+                document.getElementById('result').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
