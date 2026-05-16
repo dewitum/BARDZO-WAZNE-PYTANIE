@@ -1,107 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hej Kotuś pytanie mam</title>
+    <title>Ważne Pytanie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #d3cce3 0%, #e9e4f0 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .glass-card {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.65);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            max-width: 90%;
+            width: 550px;
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cat-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .cat-gif {
+            width: 170px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
 
         #invitation {
-            text-align: center;
-            color: red;
-            font-size: 24px;
+            font-family: 'Quicksand', sans-serif;
+            color: #3b3b3b;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 35px;
+            transition: all 0.3s ease;
         }
 
         #buttons {
-            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            min-height: 120px; 
+            position: relative;
         }
 
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 0 10px;
+        .btn-modern {
+            padding: 16px 40px;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: 'Quicksand', sans-serif;
+            border: none;
+            border-radius: 30px;
             cursor: pointer;
+            transition: all 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-modern:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         #yes-button {
-            background-color: green;
+            background: linear-gradient(145deg, #81c784, #66bb6a);
             color: white;
-            border: none;
+        }
+
+        #yes-button:hover {
+            box-shadow: 0 8px 20px rgba(102, 187, 106, 0.4);
+            transform: translateY(-2px);
         }
 
         #no-button {
-            background-color: red;
+            background: linear-gradient(145deg, #e57373, #ef5350);
             color: white;
-            border: none;
         }
 
-        #result {
-            margin-top: 20px;
-            font-size: 48px;
-            color: red;
-            display: none;
+        #no-button:hover {
+            box-shadow: 0 8px 20px rgba(239, 83, 80, 0.4);
+            transform: translateY(-2px);
         }
 
-        #result-yay {
-            font-size: 48px;
-            color: green;
+        #result-container {
             display: none;
+            margin-top: -20px;
+        }
+
+        .yay-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 55px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            animation: bounceIn 0.8s cubic-bezier(0.36, 0.88, 0.26, 1.32);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        @keyframes shakeSmall {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(3px); }
         }
     </style>
 </head>
 <body>
 
-    <div id="invitation">
-        Wiesz że Cię uwielbiam???
-    </div>
+    <div class="glass-card" id="main-card">
+        
+        <div class="cat-container">
+            <img src="https://media.tenor.com/oYg7t6E_pD0AAAAj/tkthao219-bubududu.gif" class="cat-gif" id="cat-visual" alt="Miś">
+        </div>
 
-    <div id="buttons">
-        <button id="yes-button" class="button" onclick="onYesClick()">Tak</button>
-        <button id="no-button" class="button" onclick="onNoClick()">Nie</button>
-    </div>
+        <div id="quest-content">
+            <div id="invitation">Hej Kotuś, wiesz, że Cię uwielbiam???</div>
+        </div>
+        
+        <div id="buttons">
+            <button id="yes-button" class="btn-modern" onclick="onYesClick()">Tak</button>
+            <button id="no-button" class="btn-modern" onclick="onNoClick()">Nie</button>
+        </div>
 
-    <div id="result"></div>
-    <div id="result-yay"></div>
+        <div id="result-container">
+            <div id="result-text" class="yay-text"></div>
+        </div>
+    </div>
 
     <script>
         let noButtonClickCount = 0;
-
+        let currentQuestion = 1; // Licznik pytań
+        
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        const invitation = document.getElementById('invitation');
+        const catGif = document.getElementById('cat-visual');
+        const mainCard = document.getElementById('main-card');
+        
         function onYesClick() {
-            document.getElementById('invitation').style.display = 'none';
+            // Ukrywamy pytanie i przyciski
+            document.getElementById('quest-content').style.display = 'none';
             document.getElementById('buttons').style.display = 'none';
-            document.getElementById('result-yay').innerText = 'YAY';
-            document.getElementById('result-yay').style.display = 'block';
+            
+            // Słodki miś z całusem
+            catGif.src = "https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif";
+            
+            // Pokazujemy tekst sukcesu
+            document.getElementById('result-container').style.display = 'block';
+            let resultText = document.getElementById('result-text');
+            resultText.innerText = 'YAY! ❤️';
+            resultText.style.color = '#66bb6a';
+            resultText.style.fontSize = '55px';
+
+            if (currentQuestion === 1) {
+                setTimeout(() => {
+                    currentQuestion = 2;
+                    noButtonClickCount = 0; // Resetujemy licznik kliknięć "Nie"
+
+                    // Zmiana tekstu na nowe pytanie i przywrócenie kolorów
+                    invitation.innerText = 'A czy ułożysz ze mną Lego Gwiazdę Śmierci...?';
+                    invitation.style.color = '#3b3b3b';
+                    
+                    // Powrót do pierwszego misia
+                    catGif.src = "https://media.tenor.com/oYg7t6E_pD0AAAAj/tkthao219-bubududu.gif";
+                    
+                    // Resetowanie pozycji i skali przycisków
+                    yesButton.style.transform = "scale(1)";
+                    noButton.style.transform = "translateY(0px)";
+                    noButton.style.animation = "";
+
+                    // Ponowne wyświetlenie elementów karty
+                    document.getElementById('quest-content').style.display = 'block';
+                    document.getElementById('buttons').style.display = 'flex';
+                    document.getElementById('result-container').style.display = 'none';
+                }, 1500);
+            } else if (currentQuestion === 2) {
+                // Po sekundzie od drugiego YAY zmieniamy tekst
+                setTimeout(() => {
+                    resultText.style.fontSize = '45px'; // Zmniejszamy trochę czcionkę żeby ładnie siadło
+                    resultText.innerText = 'Uwielbiam Cię Aniu! ❤️';
+                }, 1000);
+            }
         }
 
         function onNoClick() {
             noButtonClickCount++;
+            
+            mainCard.style.animation = 'shake 0.3s ease';
+            setTimeout(() => mainCard.style.animation = '', 300);
 
             if (noButtonClickCount === 1) {
-                document.getElementById('invitation').innerText = 'Napewno?';
+                invitation.innerText = 'Na pewno???';
+                invitation.style.color = '#e57373';
+                catGif.src = "https://media.tenor.com/EKrsFntSuSgAAAAj/sad.gif";
             } else {
-                document.getElementById('invitation').innerText += '?';
+                invitation.innerText += '?';
+                
+                if (noButtonClickCount === 3) {
+                    noButton.style.animation = 'shakeSmall 0.1s infinite';
+                }
             }
 
-            if (noButtonClickCount < 5) {
-                document.getElementById('yes-button').style.width = (150 + noButtonClickCount * 20) + 'px';
-                document.getElementById('yes-button').style.height = (50 + noButtonClickCount * 10) + 'px';
-                document.getElementById('no-button').style.width = '150px';
+            if (noButtonClickCount < 7) {
+                let scale = 1 + (noButtonClickCount * 0.35);
+                yesButton.style.transform = `scale(${scale})`;
+                noButton.style.transform = `translateY(${noButtonClickCount * 8}px)`;
             } else {
-                document.getElementById('invitation').style.display = 'none';
+                invitation.style.display = 'none';
                 document.getElementById('buttons').style.display = 'none';
-                document.getElementById('result').innerText = ':((';
-                document.getElementById('result').style.display = 'block';
+                
+                catGif.src = "https://media.tenor.com/EKrsFntSuSgAAAAj/sad.gif";
+                
+                document.getElementById('result-container').style.display = 'block';
+                let resultText = document.getElementById('result-text');
+                resultText.innerText = 'Masakra.';
+                resultText.style.color = '#8b8b8b';
             }
         }
     </script>
-
 </body>
 </html>
